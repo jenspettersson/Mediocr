@@ -1,2 +1,3 @@
 Mediator
 ========
+Super simple mediator
