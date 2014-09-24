@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Mediator.Tests")]
+[assembly: AssemblyTitle("Medium")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Mediator.Tests")]
+[assembly: AssemblyProduct("Medium")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("0e428f15-3a64-4bba-8174-83aea7b5442f")]
+[assembly: Guid("90ff3ae8-e1b0-47f3-a42a-d5a5f022ef1b")]
 
 // Version information for an assembly consists of the following four values:
 //
