@@ -1,3 +1,3 @@
 Mediator
 ========
-Super simple mediator
+Super simple mediator, shamelessly copied most concepts from Jimmy Bogard
