@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using FluentAssertions;
 using StructureMap;
 using Xunit;
@@ -22,8 +23,13 @@ namespace Medium.Tests
                     scanner.AssemblyContainingType<IMediator>();
                     scanner.AddAllTypesOf(typeof (IRequestHandler<,>));
                     scanner.AddAllTypesOf(typeof (IEventHandler<>));
+                    scanner.AddAllTypesOf(typeof (IPreRequestHandler<>));
+                    scanner.AddAllTypesOf(typeof (IPostRequestHandler<,>));
                     scanner.WithDefaultConventions();
                 });
+                cfg.For(typeof (IRequestHandler<,>))
+                    .DecorateAllWith(typeof (MediatorPipeline<,>));
+
                 cfg.For<TestTracker>().Use(_testTracker);
             });
 
@@ -50,6 +56,15 @@ namespace Medium.Tests
 
             _testTracker.Tracks.Should().Contain(x => x == "Handler one");
             _testTracker.Tracks.Should().Contain(x => x == "Handler two");
+        }
+
+        [Fact]
+        public void PreRequestHandlers_should_be_processed()
+        {
+            _mediator.Send(new TestRequest());
+
+            _testTracker.Tracks.Should().Contain("Pre request test handler");
+
         }
     }
 
@@ -116,6 +131,36 @@ namespace Medium.Tests
         public void Track(string message)
         {
             _tracks.Add(message);
+        }
+    }
+
+    public class PreRequestTest : IPreRequestHandler<TestRequest>
+    {
+        private readonly TestTracker _tracker;
+
+        public PreRequestTest(TestTracker tracker)
+        {
+            _tracker = tracker;
+        }
+
+        public void Handle(TestRequest request)
+        {
+            _tracker.Track("Pre request test handler");
+        }
+    }
+
+    public class PostRequestTest : IPostRequestHandler<TestRequest, TestResponse>
+    {
+        private readonly TestTracker _tracker;
+
+        public PostRequestTest(TestTracker tracker)
+        {
+            _tracker = tracker;
+        }
+
+        public void Handle(TestRequest request, TestResponse response)
+        {
+            _tracker.Track("Post request test handler");
         }
     }
 }

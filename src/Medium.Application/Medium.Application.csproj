@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{61B5180B-1D73-4658-BF6A-3662F2A0619D}</ProjectGuid>
+    <ProjectGuid>{45DCBCD4-4034-449A-953F-DA81B504A264}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Medium</RootNamespace>
-    <AssemblyName>Medium</AssemblyName>
+    <RootNamespace>Medium.Application</RootNamespace>
+    <AssemblyName>Medium.Application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,26 +30,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="StructureMap">
-      <HintPath>..\packages\structuremap.3.1.2.138\lib\net40\StructureMap.dll</HintPath>
+    <Reference Include="Raven.Abstractions">
+      <HintPath>..\packages\RavenDB.Client.3.0.3507-Unstable\lib\net45\Raven.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="StructureMap.Net4">
-      <HintPath>..\packages\structuremap.3.1.2.138\lib\net40\StructureMap.Net4.dll</HintPath>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>..\packages\RavenDB.Client.3.0.3507-Unstable\lib\net45\Raven.Client.Lightweight.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IEvent.cs" />
-    <Compile Include="IEventHandler.cs" />
-    <Compile Include="IMediator.cs" />
-    <Compile Include="IPostRequestHandler.cs" />
-    <Compile Include="IPreRequestHandler.cs" />
-    <Compile Include="IRequest.cs" />
-    <Compile Include="IRequestHandler.cs" />
-    <Compile Include="Mediator.cs" />
+    <Compile Include="PlaceOrder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Medium.Domain\Medium.Domain.csproj">
+      <Project>{b70fa709-54de-430d-9e99-240361b7e1ac}</Project>
+      <Name>Medium.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Medium\Medium.csproj">
+      <Project>{61b5180b-1d73-4658-bf6a-3662f2a0619d}</Project>
+      <Name>Medium</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
