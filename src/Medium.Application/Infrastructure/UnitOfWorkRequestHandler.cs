@@ -2,7 +2,6 @@
 using System.Linq;
 using Medium.Domain;
 using Raven.Abstractions.Data;
-using Raven.Abstractions.Extensions;
 using Raven.Client;
 using Raven.Client.Listeners;
 using Raven.Json.Linq;
@@ -21,37 +20,6 @@ namespace Medium.Application.Infrastructure
         public void Handle(TRequest request, TResponse response)
         {
             _uow.End();
-        }
-    }
-
-    public class DomainEventDispatcherHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
-    {
-        private readonly IRequestHandler<TRequest, TResponse> _inner;
-        private readonly ITrackEvents _eventsTracker;
-        private readonly IDocumentSession _session;
-
-        public DomainEventDispatcherHandler(
-            IRequestHandler<TRequest, TResponse> inner, 
-            ITrackEvents eventsTracker,
-            IDocumentSession session)
-        {
-            _inner = inner;
-            _eventsTracker = eventsTracker;
-            _session = session;
-        }
-
-        public TResponse Handle(TRequest request)
-        {
-            var response = _inner.Handle(request);
-
-            var events = _eventsTracker.GetEvents();
-            if(events.Any())
-            {
-                events.ForEach(evt => _session.Store(evt));
-                _session.SaveChanges();
-            }
-
-            return response;
         }
     }
 

@@ -10,6 +10,7 @@ using System.Web.Routing;
 using Medium.Application;
 using Medium.Application.Infrastructure;
 using Medium.Application.TodoItems;
+using Medium.Domain;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Listeners;
@@ -84,10 +85,12 @@ namespace Medium.API
                 cfg.For<IDocumentSession>()
                     .Use(ctx => ctx.GetInstance<IDocumentStore>()
                         .OpenSession());
-                        //.LifecycleIs<UniquePerRequestLifecycle>();
                 
                 cfg.For<IManageUnitOfWork>()
                     .Use<RavenDbUnitOfWork>();
+
+                var handlerType = cfg.For(typeof(IRequestHandler<,>));                  
+                handlerType.DecorateAllWith(typeof(DomainEventDispatcherHandler<,>));
 
                 cfg.For(typeof(IRequestHandler<,>))
                     .DecorateAllWith(typeof(MediatorPipeline<,>));
@@ -96,16 +99,12 @@ namespace Medium.API
 
                 cfg.For<IDocumentStoreListener>()
                     .Use(eventTracker);
-                    //.LifecycleIs<UniquePerRequestLifecycle>();
                 cfg.For<ITrackEvents>()
                     .Use(eventTracker);
-                    //.LifecycleIs<UniquePerRequestLifecycle>();
                 
                 documentStore.RegisterListener(eventTracker);
 
-                var handlerType = cfg.For(typeof(IRequestHandler<,>));
-                //handlerType.DecorateAllWith(typeof (UnitOfWorkRequestHandler<,>));
-                handlerType.DecorateAllWith(typeof (DomainEventDispatcherHandler<,>));
+                
             });
 
             return container;

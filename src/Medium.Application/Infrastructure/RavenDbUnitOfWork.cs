@@ -18,7 +18,7 @@ namespace Medium.Application.Infrastructure
 
         public void End()
         {
-            //Todo: if pipeline conitnues exceptions, don't save
+            //Todo: if pipeline contains exceptions, don't save
             _session.SaveChanges();
         }
     }

@@ -22,13 +22,15 @@ namespace Medium
             }
         }
 
-        public void Publish<TEvent>(TEvent evt) where TEvent : IEvent
+        public void Publish<TEvent>(TEvent evt)
         {
-            var eventHandlers = _container.GetAllInstances<IEventHandler<TEvent>>();
+            var handlerType = typeof(IEventHandler<>).MakeGenericType(evt.GetType());
 
-            foreach (var handler in eventHandlers)
+            var eventHandlers = _container.GetAllInstances(handlerType);
+
+            foreach (dynamic handler in eventHandlers)
             {
-                handler.Handle(evt);
+                handler.Handle((dynamic)evt);
             }
         }
     }

@@ -84,7 +84,7 @@ namespace Medium.Tests
             return requestHandler.Handle(request);
         }
 
-        public void Publish<TEvent>(TEvent evt) where TEvent : IEvent
+        public void Publish<TEvent>(TEvent evt)
         {
             throw new NotImplementedException();
         }
