@@ -28,6 +28,22 @@ namespace Medium.API.Controllers
         {
             return _mediator.Send(new GetTodoItemById(id));
         }
+    }
 
+    public class MarkTodoItemCompletedController : ApiController
+    {
+        private readonly IMediator _mediator;
+
+        public MarkTodoItemCompletedController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+
+        public HttpResponseMessage Put(string id)
+        {
+            _mediator.Send(new MarkTodoItemCompleted(id));
+
+            return new HttpResponseMessage(HttpStatusCode.Created);
+        }
     }
 }

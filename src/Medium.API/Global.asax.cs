@@ -8,9 +8,12 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Medium.Application;
+using Medium.Application.Infrastructure;
 using Medium.Application.TodoItems;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Listeners;
+using Raven.Json.Linq;
 using StructureMap;
 using StructureMap.Pipeline;
 
@@ -60,7 +63,7 @@ namespace Medium.API
                 Url = "http://localhost:8080",
                 DefaultDatabase = "Todo"
             };
-
+            
             documentStore.Initialize();
 
             var container = new Container(cfg =>
@@ -77,18 +80,50 @@ namespace Medium.API
                 });
                 cfg.For<IDocumentStore>()
                     .Use(documentStore).Singleton();
+
                 cfg.For<IDocumentSession>()
-                    .Use(documentStore.OpenSession()) //Todo: Use factory method?
-                    .LifecycleIs<UniquePerRequestLifecycle>();
+                    .Use(ctx => ctx.GetInstance<IDocumentStore>()
+                        .OpenSession());
+                        //.LifecycleIs<UniquePerRequestLifecycle>();
                 
                 cfg.For<IManageUnitOfWork>()
                     .Use<RavenDbUnitOfWork>();
 
                 cfg.For(typeof(IRequestHandler<,>))
                     .DecorateAllWith(typeof(MediatorPipeline<,>));
+
+                var eventTracker = new EventTracker();
+
+                cfg.For<IDocumentStoreListener>()
+                    .Use(eventTracker);
+                    //.LifecycleIs<UniquePerRequestLifecycle>();
+                cfg.For<ITrackEvents>()
+                    .Use(eventTracker);
+                    //.LifecycleIs<UniquePerRequestLifecycle>();
+                
+                documentStore.RegisterListener(eventTracker);
+
+                var handlerType = cfg.For(typeof(IRequestHandler<,>));
+                //handlerType.DecorateAllWith(typeof (UnitOfWorkRequestHandler<,>));
+                handlerType.DecorateAllWith(typeof (DomainEventDispatcherHandler<,>));
             });
 
             return container;
+        }
+    }
+
+    internal class TestFactory
+    {
+        private readonly DocumentStore _documentStore;
+
+        public TestFactory(DocumentStore documentStore)
+        {
+            _documentStore = documentStore;
+        }
+
+        public IDocumentSession GetSession()
+        {
+            return _documentStore.OpenSession();
         }
     }
 }

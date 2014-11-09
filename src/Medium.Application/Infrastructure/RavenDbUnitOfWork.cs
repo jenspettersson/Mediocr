@@ -1,7 +1,6 @@
-using System;
 using Raven.Client;
 
-namespace Medium.Application
+namespace Medium.Application.Infrastructure
 {
     public class RavenDbUnitOfWork : IManageUnitOfWork
     {
@@ -19,6 +18,7 @@ namespace Medium.Application
 
         public void End()
         {
+            //Todo: if pipeline conitnues exceptions, don't save
             _session.SaveChanges();
         }
     }

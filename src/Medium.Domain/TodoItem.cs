@@ -8,45 +8,48 @@ namespace Medium.Domain
         public bool Completed { get; private set; }
         public DateTime CompletedAt { get; private set; }
 
-        public TodoItem(string description)
+        public TodoItem()
         {
-            Apply(new TodoItemCreated(description));
+            
+        }
+
+        private TodoItem(string description)
+        {
+            Description = description;
+            Raise(new TodoItemCreated(this));
+        }
+
+        public static TodoItem Create(string description)
+        {
+            return new TodoItem(description);
         }
 
         public void MarkCompleted()
         {
-            Apply(new TodoItemCompleted(DateTime.Now));
-        }
-
-        public void When(TodoItemCreated evt)
-        {
-            Description = evt.Description;
-        }
-
-        public void When(TodoItemCompleted evt)
-        {
             Completed = true;
-            CompletedAt = evt.When;
+            CompletedAt = DateTime.Now;
+
+            Raise(new TodoItemCompleted(this));
         }
     }
 
     public class TodoItemCompleted : IEvent
     {
-        public DateTime When { get; private set; }
+        public TodoItem Item { get; set; }
 
-        public TodoItemCompleted(DateTime when)
+        public TodoItemCompleted(TodoItem item)
         {
-            When = when;
+            Item = item;
         }
     }
 
     public class TodoItemCreated : IEvent
     {
-        public string Description { get; private set; }
+        public TodoItem Item { get; set; }
 
-        public TodoItemCreated(string description)
+        public TodoItemCreated(TodoItem item)
         {
-            Description = description;
+            Item = item;
         }
     }
 }

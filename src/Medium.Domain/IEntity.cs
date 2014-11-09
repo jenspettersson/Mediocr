@@ -4,7 +4,8 @@ namespace Medium.Domain
 {
     public interface IEntity
     {
-        IEnumerable<IEvent> GetUncommitedEvents();
+        string Id { get; }
+        IEnumerable<IEvent> GetEvents();
         void ClearEvents();
     }
 }

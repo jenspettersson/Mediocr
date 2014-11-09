@@ -14,9 +14,12 @@ namespace Medium
         public TResponse Send<TResponse>(IRequest<TResponse> request)
         {
             var handlerType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
-            dynamic instance = _container.GetInstance(handlerType);
+            using (var childContainer = _container.GetNestedContainer())
+            {
+                dynamic instance = childContainer.GetInstance(handlerType);
 
-            return (TResponse)instance.Handle((dynamic)request);
+                return (TResponse) instance.Handle((dynamic) request);
+            }
         }
 
         public void Publish<TEvent>(TEvent evt) where TEvent : IEvent

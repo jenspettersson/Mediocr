@@ -13,18 +13,18 @@ namespace Medium.Domain
             _events = new List<IEvent>();
         }
 
-        protected void Apply(IEvent evt)
+        protected void Raise(IEvent evt)
         {
-            Mutate(evt);
+            //Mutate(evt);
             _events.Add(evt);
         }
 
-        private void Mutate(IEvent evt)
-        {
-            ((dynamic)this).When((dynamic)evt);
-        }
+        //private void Mutate(IEvent evt)
+        //{
+        //    ((dynamic)this).When((dynamic)evt);
+        //}
 
-        public IEnumerable<IEvent> GetUncommitedEvents()
+        public IEnumerable<IEvent> GetEvents()
         {
             return _events;
         }
