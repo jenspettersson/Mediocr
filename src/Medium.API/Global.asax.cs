@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Medium.Application;
+using Medium.Application.TodoItems;
 using Raven.Client;
 using Raven.Client.Document;
 using StructureMap;
@@ -57,7 +58,7 @@ namespace Medium.API
             var documentStore = new DocumentStore
             {
                 Url = "http://localhost:8080",
-                DefaultDatabase = "Shopper"
+                DefaultDatabase = "Todo"
             };
 
             documentStore.Initialize();
@@ -66,7 +67,7 @@ namespace Medium.API
             {
                 cfg.Scan(scanner =>
                 {
-                    scanner.AssemblyContainingType<PlaceOrder>();
+                    scanner.AssemblyContainingType<CreateTodoItem>();
                     scanner.AssemblyContainingType<IMediator>();
                     scanner.AddAllTypesOf(typeof(IRequestHandler<,>));
                     scanner.AddAllTypesOf(typeof(IEventHandler<>));
@@ -74,13 +75,17 @@ namespace Medium.API
                     scanner.AddAllTypesOf(typeof(IPostRequestHandler<,>));
                     scanner.WithDefaultConventions();
                 });
-                cfg.For<IDocumentStore>().Use(documentStore).Singleton();
-                cfg.For<IDocumentSession>().Use(documentStore.OpenSession())
+                cfg.For<IDocumentStore>()
+                    .Use(documentStore).Singleton();
+                cfg.For<IDocumentSession>()
+                    .Use(documentStore.OpenSession()) //Todo: Use factory method?
                     .LifecycleIs<UniquePerRequestLifecycle>();
+                
+                cfg.For<IManageUnitOfWork>()
+                    .Use<RavenDbUnitOfWork>();
 
                 cfg.For(typeof(IRequestHandler<,>))
                     .DecorateAllWith(typeof(MediatorPipeline<,>));
-
             });
 
             return container;

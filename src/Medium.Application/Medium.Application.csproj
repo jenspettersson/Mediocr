@@ -46,8 +46,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PlaceOrder.cs" />
+    <Compile Include="TodoItems\CreateTodoItem.cs" />
+    <Compile Include="Infrastructure\IManageUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Infrastructure\RavenDbUnitOfWork.cs" />
+    <Compile Include="Infrastructure\UnitOfWorkPostRequestHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Medium.Domain\Medium.Domain.csproj">

@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -39,19 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs" />
-    <Compile Include="Category.cs" />
-    <Compile Include="Company.cs" />
-    <Compile Include="Contact.cs" />
-    <Compile Include="Employee.cs" />
-    <Compile Include="Order.cs" />
-    <Compile Include="OrderLine.cs" />
-    <Compile Include="Product.cs" />
+    <Compile Include="Aggregate.cs" />
+    <Compile Include="IEntity.cs" />
+    <Compile Include="IEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Region.cs" />
-    <Compile Include="Shipper.cs" />
-    <Compile Include="Supplier.cs" />
-    <Compile Include="Territory.cs" />
+    <Compile Include="TodoItem.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
