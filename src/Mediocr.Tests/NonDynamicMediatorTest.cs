@@ -3,7 +3,7 @@ using System.Diagnostics;
 using StructureMap;
 using Xunit;
 
-namespace Medium.Tests
+namespace Mediocr.Tests
 {
     public class NonDynamicMediatorPerformanceTest
     {

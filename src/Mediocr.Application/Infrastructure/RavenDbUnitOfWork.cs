@@ -1,6 +1,6 @@
 using Raven.Client;
 
-namespace Medium.Application.Infrastructure
+namespace Mediocr.Application.Infrastructure
 {
     public class RavenDbUnitOfWork : IManageUnitOfWork
     {

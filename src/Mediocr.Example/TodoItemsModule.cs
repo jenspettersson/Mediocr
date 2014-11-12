@@ -1,6 +1,4 @@
-﻿using Medium;
-using Medium.Application.TodoItems;
-using Medium.Domain;
+﻿using Mediocr.Application.TodoItems;
 using Nancy;
 
 namespace Mediocr.Example

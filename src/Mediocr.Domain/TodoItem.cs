@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Medium.Domain
+namespace Mediocr.Domain
 {
     public class TodoItem : Aggregate
     {

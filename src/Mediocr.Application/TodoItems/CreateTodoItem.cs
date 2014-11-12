@@ -1,7 +1,7 @@
-﻿using Medium.Domain;
+﻿using Mediocr.Domain;
 using Raven.Client;
 
-namespace Medium.Application.TodoItems
+namespace Mediocr.Application.TodoItems
 {
     public class CreateTodoItem : IRequest<TodoItem>
     {

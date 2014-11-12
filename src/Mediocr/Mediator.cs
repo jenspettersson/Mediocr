@@ -1,6 +1,6 @@
 ﻿using StructureMap;
 
-namespace Medium
+namespace Mediocr
 {
     public class Mediator : IMediator
     {

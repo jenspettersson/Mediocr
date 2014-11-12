@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Medium.Application
+﻿namespace Mediocr.Application.Infrastructure
 {
     public interface IManageUnitOfWork
     {

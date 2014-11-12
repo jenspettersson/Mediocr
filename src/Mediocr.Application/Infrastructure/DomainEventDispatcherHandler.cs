@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using Raven.Abstractions.Extensions;
-
-namespace Medium.Application.Infrastructure
+﻿namespace Mediocr.Application.Infrastructure
 {
     //public class DomainEventDispatcherHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     //{

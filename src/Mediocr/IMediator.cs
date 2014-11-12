@@ -1,4 +1,4 @@
-namespace Medium
+namespace Mediocr
 {
     public interface IMediator
     {

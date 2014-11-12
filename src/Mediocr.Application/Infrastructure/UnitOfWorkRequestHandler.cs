@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Medium.Domain;
-using Raven.Abstractions.Data;
-using Raven.Client;
+﻿using System.Linq;
+using Mediocr.Domain;
 using Raven.Client.Listeners;
 using Raven.Json.Linq;
 
-namespace Medium.Application.Infrastructure
+namespace Mediocr.Application.Infrastructure
 {
     public class Logger<TRequest, TResponse> : IPostRequestHandler<TRequest, TResponse>
     {

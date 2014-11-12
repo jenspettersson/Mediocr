@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using FluentAssertions;
 using StructureMap;
 using Xunit;
 
-namespace Medium.Tests
+namespace Mediocr.Tests
 {
     public class MediatorTests
     {

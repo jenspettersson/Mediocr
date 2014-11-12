@@ -1,4 +1,4 @@
-﻿namespace Medium.Domain
+﻿namespace Mediocr.Domain
 {
     public interface IEvent
     {

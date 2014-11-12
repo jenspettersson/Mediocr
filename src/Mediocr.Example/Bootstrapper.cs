@@ -1,7 +1,5 @@
-using Medium;
-using Medium.Application;
-using Medium.Application.Infrastructure;
-using Medium.Application.TodoItems;
+using Mediocr.Application.Infrastructure;
+using Mediocr.Application.TodoItems;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.StructureMap;

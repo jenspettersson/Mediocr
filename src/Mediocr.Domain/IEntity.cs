@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Medium.Domain
+namespace Mediocr.Domain
 {
     public interface IEntity
     {
