@@ -1,3 +1,3 @@
-Mediator
+Mediocr
 ========
-Super simple mediator, shamelessly copied most concepts from Jimmy Bogard
+Super simple and mediocre mediator, shamelessly copied most concepts from Jimmy Bogard
