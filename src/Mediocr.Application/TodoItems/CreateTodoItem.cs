@@ -29,9 +29,9 @@ namespace Medium.Application.TodoItems
 
     public class GetTodoItemById : IRequest<TodoItem>
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
-        public GetTodoItemById(string id)
+        public GetTodoItemById(int id)
         {
             Id = id;
         }

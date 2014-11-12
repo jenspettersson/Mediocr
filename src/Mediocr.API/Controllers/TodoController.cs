@@ -24,7 +24,7 @@ namespace Medium.API.Controllers
             return new HttpResponseMessage(HttpStatusCode.Created);
         }
 
-        public TodoItem Get(string id)
+        public TodoItem Get(int id)
         {
             return _mediator.Send(new GetTodoItemById(id));
         }

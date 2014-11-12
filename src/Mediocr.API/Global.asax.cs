@@ -89,8 +89,8 @@ namespace Medium.API
                 cfg.For<IManageUnitOfWork>()
                     .Use<RavenDbUnitOfWork>();
 
-                var handlerType = cfg.For(typeof(IRequestHandler<,>));                  
-                handlerType.DecorateAllWith(typeof(DomainEventDispatcherHandler<,>));
+                //var handlerType = cfg.For(typeof(IRequestHandler<,>));                  
+                //handlerType.DecorateAllWith(typeof(DomainEventDispatcherHandler<,>));
 
                 cfg.For(typeof(IRequestHandler<,>))
                     .DecorateAllWith(typeof(MediatorPipeline<,>));

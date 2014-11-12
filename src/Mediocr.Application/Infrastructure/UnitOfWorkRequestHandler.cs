@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Medium.Domain;
 using Raven.Abstractions.Data;
@@ -8,6 +9,14 @@ using Raven.Json.Linq;
 
 namespace Medium.Application.Infrastructure
 {
+    public class Logger<TRequest, TResponse> : IPostRequestHandler<TRequest, TResponse>
+    {
+        public void Handle(TRequest request, TResponse response)
+        {
+            
+        }
+    }
+
     public class UnitOfWorkRequestHandler<TRequest, TResponse> : IPostRequestHandler<TRequest, TResponse>
     {
         private readonly IManageUnitOfWork _uow;
