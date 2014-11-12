@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Medium.API</RootNamespace>
-    <AssemblyName>Medium.API</AssemblyName>
+    <RootNamespace>Mediocr.API</RootNamespace>
+    <AssemblyName>Mediocr.API</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -289,17 +289,17 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Medium.Application\Medium.Application.csproj">
+    <ProjectReference Include="..\Mediocr.Application\Mediocr.Application.csproj">
       <Project>{45DCBCD4-4034-449A-953F-DA81B504A264}</Project>
-      <Name>Medium.Application</Name>
+      <Name>Mediocr.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Medium.Domain\Medium.Domain.csproj">
+    <ProjectReference Include="..\Mediocr.Domain\Mediocr.Domain.csproj">
       <Project>{B70FA709-54DE-430D-9E99-240361B7E1AC}</Project>
-      <Name>Medium.Domain</Name>
+      <Name>Mediocr.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Medium\Medium.csproj">
+    <ProjectReference Include="..\Mediocr\Mediocr.csproj">
       <Project>{61B5180B-1D73-4658-BF6A-3662F2A0619D}</Project>
-      <Name>Medium</Name>
+      <Name>Mediocr</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

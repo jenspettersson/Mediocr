@@ -3,17 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium", "Medium\Medium.csproj", "{61B5180B-1D73-4658-BF6A-3662F2A0619D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr", "Mediocr\Mediocr.csproj", "{61B5180B-1D73-4658-BF6A-3662F2A0619D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium.Tests", "Medium.Tests\Medium.Tests.csproj", "{61CE31F9-E26D-42BE-BECD-183B208F28EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr.Tests", "Mediocr.Tests\Mediocr.Tests.csproj", "{61CE31F9-E26D-42BE-BECD-183B208F28EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium.Domain", "Medium.Domain\Medium.Domain.csproj", "{B70FA709-54DE-430D-9E99-240361B7E1AC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr.Domain", "Mediocr.Domain\Mediocr.Domain.csproj", "{B70FA709-54DE-430D-9E99-240361B7E1AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium.API", "Medium.API\Medium.API.csproj", "{4C3E379C-A05D-4BCE-B64F-AC53DAE1913C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr.API", "Mediocr.API\Mediocr.API.csproj", "{4C3E379C-A05D-4BCE-B64F-AC53DAE1913C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium.TestConsole", "Medium.TestConsole\Medium.TestConsole.csproj", "{899557C2-C545-45A4-9D6B-6C6E590DA593}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr.TestConsole", "Mediocr.TestConsole\Mediocr.TestConsole.csproj", "{899557C2-C545-45A4-9D6B-6C6E590DA593}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Medium.Application", "Medium.Application\Medium.Application.csproj", "{45DCBCD4-4034-449A-953F-DA81B504A264}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr.Application", "Mediocr.Application\Mediocr.Application.csproj", "{45DCBCD4-4034-449A-953F-DA81B504A264}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{22C327A3-E6E6-4385-9368-4C6054938825}"
 EndProject

@@ -7,8 +7,8 @@
     <ProjectGuid>{45DCBCD4-4034-449A-953F-DA81B504A264}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Medium.Application</RootNamespace>
-    <AssemblyName>Medium.Application</AssemblyName>
+    <RootNamespace>Mediocr.Application</RootNamespace>
+    <AssemblyName>Mediocr.Application</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -55,13 +55,13 @@
     <Compile Include="TodoItems\TodoItemCreatedEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Medium.Domain\Medium.Domain.csproj">
+    <ProjectReference Include="..\Mediocr.Domain\Mediocr.Domain.csproj">
       <Project>{b70fa709-54de-430d-9e99-240361b7e1ac}</Project>
-      <Name>Medium.Domain</Name>
+      <Name>Mediocr.Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Medium\Medium.csproj">
+    <ProjectReference Include="..\Mediocr\Mediocr.csproj">
       <Project>{61b5180b-1d73-4658-bf6a-3662f2a0619d}</Project>
-      <Name>Medium</Name>
+      <Name>Mediocr</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
