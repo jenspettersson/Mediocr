@@ -10,18 +10,18 @@ namespace Mediocr.Application.TodoItems
 
     public class CreateTodoItemHandler : IRequestHandler<CreateTodoItem, TodoItem>
     {
-        private readonly IDocumentSession _session;
+        private readonly IRepository<TodoItem> _repository;
 
-        public CreateTodoItemHandler(IDocumentSession session)
+        public CreateTodoItemHandler(IRepository<TodoItem> repository)
         {
-            _session = session;
+            _repository = repository;
         }
 
         public TodoItem Handle(CreateTodoItem request)
         {
             var todoItem = TodoItem.Create(request.Description);
 
-            _session.Store(todoItem);
+            _repository.Add(todoItem);
 
             return todoItem;
         }

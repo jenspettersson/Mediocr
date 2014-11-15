@@ -1,10 +1,12 @@
 using Mediocr.Application.Infrastructure;
 using Mediocr.Application.TodoItems;
+using Mediocr.Domain;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.StructureMap;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Listeners;
 using StructureMap;
 
 namespace Mediocr.Example
@@ -51,12 +53,20 @@ namespace Mediocr.Example
                 cfg.For<IManageUnitOfWork>()
                     .Use<RavenDbUnitOfWork>();
 
+                cfg.For<IDocumentStoreListener>()
+                    .Use<DocumentStoreListener>();
+
                 //var handlerType = cfg.For(typeof(IRequestHandler<,>));
                 //handlerType.DecorateAllWith(typeof(DomainEventDispatcherHandler<,>));
 
                 cfg.For(typeof(IRequestHandler<,>))
                     .DecorateAllWith(typeof(MediatorPipeline<,>));
+
+                cfg.For<IRepository<TodoItem>>()
+                    .Use<EntityRepository<TodoItem>>();
             });
+
+            documentStore.RegisterListener(existingContainer.GetInstance<IDocumentStoreListener>());
         }
 
         protected override void ConfigureRequestContainer(IContainer container, NancyContext context)

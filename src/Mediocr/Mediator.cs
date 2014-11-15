@@ -1,13 +1,16 @@
-﻿using StructureMap;
+﻿using System;
+using StructureMap;
 
 namespace Mediocr
 {
     public class Mediator : IMediator
     {
+        public Guid InstanceId;
         private readonly IContainer _container;
 
         public Mediator(IContainer container)
         {
+            InstanceId = Guid.NewGuid();
             _container = container;
         }
 
@@ -34,4 +37,5 @@ namespace Mediocr
             }
         }
     }
+
 }

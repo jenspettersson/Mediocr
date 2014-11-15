@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Mediocr.Domain;
+using Raven.Abstractions.Extensions;
 using Raven.Client.Listeners;
 using Raven.Json.Linq;
 
@@ -28,40 +29,27 @@ namespace Mediocr.Application.Infrastructure
         }
     }
 
-    public interface ITrackEvents
+    public class DocumentStoreListener : IDocumentStoreListener
     {
-        Domain.IEvent[] GetEvents();
-    }
-
-
-    public class EventTracker : IDocumentStoreListener, ITrackEvents
-    {
-        private Domain.IEvent[] _events;
-
-        public EventTracker()
-        {
-            _events = new Domain.IEvent[0];
-        }
-
+     
         public bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
         {
+            if (!(entityInstance is IEntity))
+                return true;
+
+            var instance = (IEntity)entityInstance;
+            var events = instance.GetEvents().ToArray();
+            
+            //events.ForEach(evt => _eventDispatcher.Dispatch(evt));
+
+            instance.ClearEvents();
 
             return true;
         }
 
         public void AfterStore(string key, object entityInstance, RavenJObject metadata)
         {
-            if (!(entityInstance is IEntity))
-                return;
-
-            var instance = (IEntity) entityInstance;
-            _events = instance.GetEvents().ToArray();
-            instance.ClearEvents();
-        }
-
-        public Domain.IEvent[] GetEvents()
-        {
-            return _events;
+           
         }
     }
 }

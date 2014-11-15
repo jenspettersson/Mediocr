@@ -1,4 +1,5 @@
-﻿using Mediocr.Application.TodoItems;
+﻿using System;
+using Mediocr.Application.TodoItems;
 using Nancy;
 
 namespace Mediocr.Example
@@ -28,6 +29,12 @@ namespace Mediocr.Example
                 var todoItem = _mediator.Send(new GetTodoItemById(parameters.id));
 
                 return Response.AsJson(todoItem);
+            };
+
+            Post["/"] = parameters =>
+            {
+                var item =_mediator.Send(new CreateTodoItem{ Description = "Created at: " + DateTime.Now});
+                return item;
             };
         }
     }
