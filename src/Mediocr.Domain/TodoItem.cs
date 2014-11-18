@@ -29,17 +29,19 @@ namespace Mediocr.Domain
             Completed = true;
             CompletedAt = DateTime.Now;
 
-            Raise(new TodoItemCompleted(this));
+            Raise(new TodoItemCompleted(Id, CompletedAt));
         }
     }
 
     public class TodoItemCompleted : IEvent
     {
-        public TodoItem Item { get; set; }
+        public string TodoItemId { get; set; }
+        public DateTime CompletedAt { get; set; }
 
-        public TodoItemCompleted(TodoItem item)
+        public TodoItemCompleted(string todoItemId, DateTime completedAt)
         {
-            Item = item;
+            TodoItemId = todoItemId;
+            CompletedAt = completedAt;
         }
     }
 

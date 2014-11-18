@@ -28,28 +28,4 @@ namespace Mediocr.Application.Infrastructure
             _uow.End();
         }
     }
-
-    public class DocumentStoreListener : IDocumentStoreListener
-    {
-     
-        public bool BeforeStore(string key, object entityInstance, RavenJObject metadata, RavenJObject original)
-        {
-            if (!(entityInstance is IEntity))
-                return true;
-
-            var instance = (IEntity)entityInstance;
-            var events = instance.GetEvents().ToArray();
-            
-            //events.ForEach(evt => _eventDispatcher.Dispatch(evt));
-
-            instance.ClearEvents();
-
-            return true;
-        }
-
-        public void AfterStore(string key, object entityInstance, RavenJObject metadata)
-        {
-           
-        }
-    }
 }

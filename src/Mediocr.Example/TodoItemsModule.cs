@@ -1,6 +1,7 @@
 ﻿using System;
 using Mediocr.Application.TodoItems;
 using Nancy;
+using Nancy.ModelBinding;
 
 namespace Mediocr.Example
 {
@@ -21,7 +22,9 @@ namespace Mediocr.Example
             _mediator = mediator;
             Get["/"] = parameters =>
             {
-                return "/todo-items/{id}";
+                var todoItems = _mediator.Send(new GetTodoItems());
+
+                return Response.AsJson(todoItems);
             };
 
             Get["/{id}"] = parameters =>
@@ -33,8 +36,16 @@ namespace Mediocr.Example
 
             Post["/"] = parameters =>
             {
-                var item =_mediator.Send(new CreateTodoItem{ Description = "Created at: " + DateTime.Now});
+                var createTodoItem = this.Bind<CreateTodoItem>();
+                var item =_mediator.Send(createTodoItem);
                 return item;
+            };
+
+            Put["/{id}/complete"] = parameters =>
+            {
+                var id = parameters.id;
+                var todoItem = _mediator.Send(new MarkTodoItemCompleted(id));
+                return todoItem;
             };
         }
     }

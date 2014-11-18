@@ -64,8 +64,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\RavenDbUnitOfWork.cs" />
     <Compile Include="Infrastructure\UnitOfWorkRequestHandler.cs" />
-    <Compile Include="TodoItems\ITodoItemRepository.cs" />
-    <Compile Include="TodoItems\TodoItemCreatedEventHandler.cs" />
+    <Compile Include="TodoItems\CreateTodoItemHandler.cs" />
+    <Compile Include="TodoItems\GetTodoItemById.cs" />
+    <Compile Include="TodoItems\GetTodoItemByIdHandler.cs" />
+    <Compile Include="TodoItems\GetTodoItems.cs" />
+    <Compile Include="TodoItems\GetTodoItemsHandler.cs" />
+    <Compile Include="Infrastructure\IRepository.cs" />
+    <Compile Include="Infrastructure\EntityRepository.cs" />
+    <Compile Include="TodoItems\MarkTodItemCompletedHandler.cs" />
+    <Compile Include="TodoItems\MarkTodoItemCompleted.cs" />
+    <Compile Include="TodoItems\PersistEvents.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mediocr.Domain\Mediocr.Domain.csproj">

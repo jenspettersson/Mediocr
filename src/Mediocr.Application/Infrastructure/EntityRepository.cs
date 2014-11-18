@@ -1,14 +1,7 @@
-﻿using Mediocr.Application.Infrastructure;
-using Raven.Client;
+﻿using Raven.Client;
 
-namespace Mediocr.Application.TodoItems
+namespace Mediocr.Application.Infrastructure
 {
-    public interface IRepository<T>
-    {
-        T Load(object id);
-        void Add(T state);
-    }
-
     public class EntityRepository<T> : IRepository<T>
     {
         private readonly IManageUnitOfWork _uow;

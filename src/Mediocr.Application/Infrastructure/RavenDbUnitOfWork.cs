@@ -40,14 +40,16 @@ namespace Mediocr.Application.Infrastructure
 
             foreach (var entity in entities)
             {
-                var evts = entity.GetEvents();
+                var evts = entity.GetEvents().ToArray();
 
                 evts.ForEach(evt => _mediator.Publish(evt));
+                entity.ClearEvents();
             }
-
 
             //Todo: if pipeline contains exceptions, don't save
             _session.SaveChanges();
+
+            //Todo: Dispatch events to out of transaction handlers...
         }
     }
 }

@@ -5,7 +5,7 @@ namespace Mediocr
         void Handle(TRequest request, TResponse response);
     }
 
-    public class MediatorPipeline<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
+    public class MediatorPipeline<TRequest, TResponse> : IRequestHandler<TRequest, TResponse> where TRequest : IRequest<TResponse>
     {
         private readonly IRequestHandler<TRequest, TResponse> _inner;
         private readonly IPreRequestHandler<TRequest>[] _preRequestHandlers;
