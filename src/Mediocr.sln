@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr", "Mediocr\Mediocr.csproj", "{61B5180B-1D73-4658-BF6A-3662F2A0619D}"
 EndProject
@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{A696EC
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mediocr.Domain.Tests", "Mediocr.Domain.Tests\Mediocr.Domain.Tests.csproj", "{39AACD34-FCA6-4239-B22A-8049470EB086}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,6 +56,10 @@ Global
 		{0EC07A57-5E58-4E62-BE3C-7E494784CCB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0EC07A57-5E58-4E62-BE3C-7E494784CCB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0EC07A57-5E58-4E62-BE3C-7E494784CCB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39AACD34-FCA6-4239-B22A-8049470EB086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39AACD34-FCA6-4239-B22A-8049470EB086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39AACD34-FCA6-4239-B22A-8049470EB086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39AACD34-FCA6-4239-B22A-8049470EB086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -61,5 +67,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B70FA709-54DE-430D-9E99-240361B7E1AC} = {22C327A3-E6E6-4385-9368-4C6054938825}
 		{0EC07A57-5E58-4E62-BE3C-7E494784CCB1} = {22C327A3-E6E6-4385-9368-4C6054938825}
+		{39AACD34-FCA6-4239-B22A-8049470EB086} = {22C327A3-E6E6-4385-9368-4C6054938825}
 	EndGlobalSection
 EndGlobal

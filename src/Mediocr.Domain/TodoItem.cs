@@ -2,34 +2,46 @@
 
 namespace Mediocr.Domain
 {
-    public class TodoItem : Aggregate
+    public class TodoItem : Entity<TodoItemState>
     {
-        public string Description { get; private set; }
-        public bool Completed { get; private set; }
-        public DateTime CompletedAt { get; private set; }
-
-        public TodoItem()
-        {
-            
-        }
-
-        private TodoItem(string description)
-        {
-            Description = description;
-            Raise(new TodoItemCreated(this));
-        }
+        public TodoItem(TodoItemState state) : base(state){}
 
         public static TodoItem Create(string description)
         {
-            return new TodoItem(description);
+            var state = new TodoItemState
+            {
+                Description = description
+            };
+            var todoItem = new TodoItem(state);
+            todoItem.Raise(new TodoItemCreated(state));
+            return todoItem;
         }
 
         public void MarkCompleted()
         {
-            Completed = true;
-            CompletedAt = DateTime.Now;
+            _state.Completed = true;
+            _state.CompletedAt = DateTime.Now;
 
-            Raise(new TodoItemCompleted(Id, CompletedAt));
+            Raise(new TodoItemCompleted(_state.Id, _state.CompletedAt));
+        }
+    }
+
+    public class TodoItemState
+    {
+        public string Id { get; set; }
+        public string Description { get; set; }
+        public bool Completed { get; set; }
+        public DateTime CompletedAt { get; set; }
+    }
+
+
+    public class Task
+    {
+        public string Description { get; private set; }
+
+        public Task(string description)
+        {
+            Description = description;
         }
     }
 
@@ -47,9 +59,9 @@ namespace Mediocr.Domain
 
     public class TodoItemCreated : IEvent
     {
-        public TodoItem Item { get; set; }
+        public TodoItemState Item { get; set; }
 
-        public TodoItemCreated(TodoItem item)
+        public TodoItemCreated(TodoItemState item)
         {
             Item = item;
         }

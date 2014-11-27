@@ -2,10 +2,8 @@
 
 namespace Mediocr.Domain
 {
-    public interface IEntity
+    public interface IEntity<out TState>
     {
-        string Id { get; }
-        IEnumerable<IEvent> GetEvents();
-        void ClearEvents();
+        TState GetState();
     }
 }

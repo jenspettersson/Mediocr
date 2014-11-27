@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Mediocr.Domain;
 using Raven.Abstractions.Extensions;
-using Raven.Abstractions.Util.Encryptors;
 using Raven.Client;
 
 namespace Mediocr.Application.Infrastructure
@@ -36,7 +35,7 @@ namespace Mediocr.Application.Infrastructure
 
         public void End()
         {
-            var entities = _entities.OfType<IEntity>();
+            var entities = _entities.OfType<IEventTrackedEntity>();
 
             foreach (var entity in entities)
             {
