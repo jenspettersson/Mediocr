@@ -1,13 +1,14 @@
 ﻿using Mediocr.Application.Infrastructure;
 using Mediocr.Domain;
+using Mediocr.Domain.TodoItems;
 
 namespace Mediocr.Application.TodoItems
 {
     public class CreateTodoItemHandler : IRequestHandler<CreateTodoItem, TodoItem>
     {
-        private readonly IRepository<TodoItem> _repository;
+        private readonly ITodoItemRepository _repository;
 
-        public CreateTodoItemHandler(IRepository<TodoItem> repository)
+        public CreateTodoItemHandler(ITodoItemRepository repository)
         {
             _repository = repository;
         }

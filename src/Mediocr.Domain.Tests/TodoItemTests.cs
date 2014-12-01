@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FluentAssertions;
+using Mediocr.Domain.TodoItems;
 using NUnit.Framework;
 
 namespace Mediocr.Domain.Tests

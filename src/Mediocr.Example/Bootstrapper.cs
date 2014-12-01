@@ -1,14 +1,11 @@
-using System.Linq;
 using Mediocr.Application.Infrastructure;
 using Mediocr.Application.TodoItems;
-using Mediocr.Domain;
+using Mediocr.Domain.TodoItems;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.StructureMap;
 using Raven.Client;
 using Raven.Client.Document;
-using Raven.Client.Listeners;
-using Raven.Json.Linq;
 using StructureMap;
 
 namespace Mediocr.Example
@@ -27,7 +24,7 @@ namespace Mediocr.Example
 
             var documentStore = new DocumentStore
             {
-                Url = "http://localhost:8080",
+                Url = "http://localhost:8081",
                 DefaultDatabase = "Todo"
             };
 
@@ -37,6 +34,8 @@ namespace Mediocr.Example
                        DocumentConvention.DefaultTypeTagName(type);
 
             documentStore.Initialize();
+
+            documentStore.Conventions.RegisterIdConvention<TodoItemState>((dbname, commands, state) => "TodoItems/" + state.Id);
 
             existingContainer.Configure(cfg =>
             {
@@ -62,8 +61,7 @@ namespace Mediocr.Example
                 cfg.For(typeof(IRequestHandler<,>))
                     .DecorateAllWith(typeof(MediatorPipeline<,>));
 
-                cfg.For<IRepository<TodoItem>>()
-                    .Use<EntityRepository<TodoItem>>();
+                cfg.For<ITodoItemRepository>().Use<TodoItemRepository>();
             });
         }
 

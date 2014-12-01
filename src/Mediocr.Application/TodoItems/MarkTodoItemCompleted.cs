@@ -1,4 +1,4 @@
-﻿using Mediocr.Domain;
+﻿using Mediocr.Domain.TodoItems;
 
 namespace Mediocr.Application.TodoItems
 {

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Mediocr.Domain;
+using Mediocr.Domain.TodoItems;
 using Raven.Client;
 
 namespace Mediocr.Application.TodoItems

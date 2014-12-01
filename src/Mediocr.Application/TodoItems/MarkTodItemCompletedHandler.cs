@@ -1,13 +1,12 @@
-﻿using Mediocr.Application.Infrastructure;
-using Mediocr.Domain;
+﻿using Mediocr.Domain.TodoItems;
 
 namespace Mediocr.Application.TodoItems
 {
     public class MarkTodItemCompletedHandler : IRequestHandler<MarkTodoItemCompleted, TodoItem>
     {
-        private readonly IRepository<TodoItem> _repository;
+        private readonly ITodoItemRepository _repository;
 
-        public MarkTodItemCompletedHandler(IRepository<TodoItem> repository)
+        public MarkTodItemCompletedHandler(ITodoItemRepository repository)
         {
             _repository = repository;
         }

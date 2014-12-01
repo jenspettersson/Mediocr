@@ -1,8 +1,8 @@
-﻿using Mediocr.Domain;
+﻿using Mediocr.Domain.TodoItems;
 
 namespace Mediocr.Application.TodoItems
 {
-    public class GetTodoItemById : IRequest<TodoItem>
+    public class GetTodoItemById : IRequest<TodoItemState>
     {
         public int Id { get; set; }
 

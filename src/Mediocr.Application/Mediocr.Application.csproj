@@ -71,11 +71,11 @@
     <Compile Include="TodoItems\GetTodoItemByIdHandler.cs" />
     <Compile Include="TodoItems\GetTodoItems.cs" />
     <Compile Include="TodoItems\GetTodoItemsHandler.cs" />
-    <Compile Include="Infrastructure\IRepository.cs" />
     <Compile Include="Infrastructure\EntityRepository.cs" />
     <Compile Include="TodoItems\MarkTodItemCompletedHandler.cs" />
     <Compile Include="TodoItems\MarkTodoItemCompleted.cs" />
     <Compile Include="TodoItems\PersistEvents.cs" />
+    <Compile Include="TodoItems\TodoItemRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Mediocr.Domain\Mediocr.Domain.csproj">
