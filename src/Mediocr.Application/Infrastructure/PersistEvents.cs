@@ -1,6 +1,6 @@
 ﻿using Raven.Client;
 
-namespace Mediocr.Application.TodoItems
+namespace Mediocr.Application.Infrastructure
 {
     public class PersistEvents : IEventHandler<Domain.IEvent>
     {

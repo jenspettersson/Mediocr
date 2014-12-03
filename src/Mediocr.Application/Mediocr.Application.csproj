@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationBootstrapper.cs" />
-    <Compile Include="Infrastructure\DomainEntityMapper.cs" />
+    <Compile Include="Infrastructure\DomainStateMapper.cs" />
     <Compile Include="TodoItems\CreateTodoItem.cs" />
     <Compile Include="Infrastructure\IManageUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -82,7 +82,8 @@
     <Compile Include="Infrastructure\EntityRepository.cs" />
     <Compile Include="TodoItems\MarkTodItemCompletedHandler.cs" />
     <Compile Include="TodoItems\MarkTodoItemCompleted.cs" />
-    <Compile Include="TodoItems\PersistEvents.cs" />
+    <Compile Include="Infrastructure\PersistEvents.cs" />
+    <Compile Include="TodoItems\TodoItemMappingProfile.cs" />
     <Compile Include="TodoItems\TodoItemRepository.cs" />
     <Compile Include="TodoItems\TodoItemViewModel.cs" />
   </ItemGroup>
