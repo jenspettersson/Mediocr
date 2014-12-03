@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
-using Mediocr.Domain;
 using Mediocr.Domain.TodoItems;
 using Raven.Client;
 
@@ -19,7 +18,7 @@ namespace Mediocr.Application.TodoItems
         public IEnumerable<TodoItemViewModel> Handle(GetTodoItems request)
         {
             //Todo: page...
-            var items = _session.Query<TodoItem>().ToList();
+            var items = _session.Query<TodoItemState>().ToList();
 
             return items.Select(Mapper.Map<TodoItemViewModel>);
         }

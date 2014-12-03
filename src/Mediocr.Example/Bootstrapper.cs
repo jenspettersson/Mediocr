@@ -1,3 +1,4 @@
+using System;
 using Mediocr.Application;
 using Mediocr.Application.Infrastructure;
 using Mediocr.Application.TodoItems;
@@ -7,6 +8,7 @@ using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.StructureMap;
 using Raven.Client;
 using Raven.Client.Document;
+using Raven.Client.Util;
 using StructureMap;
 
 namespace Mediocr.Example
@@ -30,15 +32,20 @@ namespace Mediocr.Example
                 DefaultDatabase = "Todo"
             };
 
-            documentStore.Conventions.FindTypeTagName =
-                   type => typeof(Domain.IEvent).IsAssignableFrom(type) ?
-                       type.Name :
-                       DocumentConvention.DefaultTypeTagName(type);
+            documentStore.Conventions.FindTypeTagName = type =>
+            {
+                if (typeof(Domain.IEvent).IsAssignableFrom(type))
+                    return type.Name;
+
+                //Crude way of making the State id's a little bit prettier
+                if (type.Name.EndsWith("State"))
+                    return Inflector.Pluralize(type.Name.Remove(type.Name.LastIndexOf("State", StringComparison.InvariantCulture), 5));
+
+                return DocumentConvention.DefaultTypeTagName(type);
+            };
 
             documentStore.Initialize();
-
-            documentStore.Conventions.RegisterIdConvention<TodoItemState>((dbname, commands, state) => "TodoItems/" + state.Id);
-
+            
             existingContainer.Configure(cfg =>
             {
                 cfg.For<IDocumentStore>().Use(documentStore).Singleton();

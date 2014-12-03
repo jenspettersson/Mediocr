@@ -2,7 +2,7 @@
 
 namespace Mediocr.Application.TodoItems
 {
-    public class MarkTodoItemCompleted : IRequest<TodoItem>
+    public class MarkTodoItemCompleted : IRequest<TodoItemViewModel>
     {
         public string Id { get; set; }
 

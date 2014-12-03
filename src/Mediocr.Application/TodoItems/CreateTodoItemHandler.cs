@@ -1,8 +1,9 @@
-﻿using Mediocr.Domain.TodoItems;
+﻿using AutoMapper;
+using Mediocr.Domain.TodoItems;
 
 namespace Mediocr.Application.TodoItems
 {
-    public class CreateTodoItemHandler : IRequestHandler<CreateTodoItem, TodoItem>
+    public class CreateTodoItemHandler : IRequestHandler<CreateTodoItem, TodoItemViewModel>
     {
         private readonly ITodoItemRepository _repository;
 
@@ -11,13 +12,13 @@ namespace Mediocr.Application.TodoItems
             _repository = repository;
         }
 
-        public TodoItem Handle(CreateTodoItem request)
+        public TodoItemViewModel Handle(CreateTodoItem request)
         {
             var todoItem = TodoItem.Create(request.Description);
 
             _repository.Add(todoItem);
 
-            return todoItem;
+            return Mapper.Map<TodoItemViewModel>(todoItem);
         }
     }
 }
