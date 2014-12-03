@@ -4,6 +4,8 @@ namespace Mediocr.Domain.TodoItems
 {
     public class TodoItem : Entity<TodoItemState>
     {
+        public string Id { get { return _state.Id; } }
+
         public TodoItem(TodoItemState state) : base(state){}
 
         public static TodoItem Create(string description)

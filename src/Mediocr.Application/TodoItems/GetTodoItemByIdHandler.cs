@@ -1,10 +1,10 @@
-using Mediocr.Domain;
+using AutoMapper;
 using Mediocr.Domain.TodoItems;
 using Raven.Client;
 
 namespace Mediocr.Application.TodoItems
 {
-    public class GetTodoItemByIdHandler : IRequestHandler<GetTodoItemById, TodoItemState>
+    public class GetTodoItemByIdHandler : IRequestHandler<GetTodoItemById, TodoItemViewModel>
     {
         private readonly IDocumentSession _session;
 
@@ -13,9 +13,10 @@ namespace Mediocr.Application.TodoItems
             _session = session;
         }
 
-        public TodoItemState Handle(GetTodoItemById request)
+        public TodoItemViewModel Handle(GetTodoItemById request)
         {
-            return _session.Load<TodoItemState>("TodoItems/" + request.Id);
+            var state = _session.Load<TodoItemState>("TodoItems/" + request.Id);
+            return Mapper.Map<TodoItemViewModel>(state);
         }
     }
 }

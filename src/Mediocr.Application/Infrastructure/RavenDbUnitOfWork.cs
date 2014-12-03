@@ -35,6 +35,8 @@ namespace Mediocr.Application.Infrastructure
 
         public void End()
         {
+            //Todo: This should not be handled by the UoW itself, but by a separate event dispatcher
+
             var entities = _entities.OfType<IEventTrackedEntity>();
 
             foreach (var entity in entities)

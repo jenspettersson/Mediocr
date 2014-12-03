@@ -1,3 +1,4 @@
+using Mediocr.Application;
 using Mediocr.Application.Infrastructure;
 using Mediocr.Application.TodoItems;
 using Mediocr.Domain.TodoItems;
@@ -21,10 +22,11 @@ namespace Mediocr.Example
         protected override void ConfigureApplicationContainer(IContainer existingContainer)
         {
             // Perform registation that should have an application lifetime
+            ApplicationBootstrapper.Init();
 
             var documentStore = new DocumentStore
             {
-                Url = "http://localhost:8081",
+                Url = "http://localhost:8080",
                 DefaultDatabase = "Todo"
             };
 

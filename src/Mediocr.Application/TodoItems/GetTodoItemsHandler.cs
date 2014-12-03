@@ -1,11 +1,13 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using AutoMapper;
 using Mediocr.Domain;
 using Mediocr.Domain.TodoItems;
 using Raven.Client;
 
 namespace Mediocr.Application.TodoItems
 {
-    public class GetTodoItemsHandler : IRequestHandler<GetTodoItems, IEnumerable<TodoItem>>
+    public class GetTodoItemsHandler : IRequestHandler<GetTodoItems, IEnumerable<TodoItemViewModel>>
     {
         private readonly IDocumentSession _session;
 
@@ -14,9 +16,12 @@ namespace Mediocr.Application.TodoItems
             _session = session;
         }
 
-        public IEnumerable<TodoItem> Handle(GetTodoItems request)
+        public IEnumerable<TodoItemViewModel> Handle(GetTodoItems request)
         {
-            return _session.Query<TodoItem>();
+            //Todo: page...
+            var items = _session.Query<TodoItem>().ToList();
+
+            return items.Select(Mapper.Map<TodoItemViewModel>);
         }
     }
 }
