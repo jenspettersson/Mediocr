@@ -46,7 +46,8 @@
     <Compile Include="IEvent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TodoItems\ITodoItemRepository.cs" />
-    <Compile Include="TodoItems\Task.cs" />
+    <Compile Include="TodoItems\Tasks\Task.cs" />
+    <Compile Include="TodoItems\Tasks\TaskAssigned.cs" />
     <Compile Include="TodoItems\TodoItem.cs" />
     <Compile Include="TodoItems\TodoItemCompleted.cs" />
     <Compile Include="TodoItems\TodoItemCreated.cs" />
